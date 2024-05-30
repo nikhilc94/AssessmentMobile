@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text as TextComponent, StyleSheet} from 'react-native';
 
-import {withTheme} from '../theme';
 import {TEXT_VARIANT} from '../utils/constants';
 
 interface TextProps {
@@ -58,4 +57,4 @@ const makeStyles = style =>
     },
   });
 
-export default withTheme(Text);
+export default Text;

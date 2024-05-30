@@ -2,32 +2,29 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Button as PaperButton} from 'react-native-paper';
 
-type ButtonProps = React.ComponentProps<typeof PaperButton>;
-
-const Button = (props: ButtonProps) => {
-  const {disabled = false, ...rest} = props;
-
+const Button = props => {
+  const {disabled} = props;
   return (
     <PaperButton
-      mode="contained"
       disabled={disabled}
+      mode="contained"
       style={styles.buttonStyle}
-      {...rest}>
-      <View
-        flexGrow={1}
-        alignItems="center"
-        flexDirection="row"
-        justifyContent="center">
-        {props.children}
-      </View>
+      {...props.rest}>
+      <View style={styles.buttonText}>{props.children}</View>
     </PaperButton>
   );
 };
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    height: 60,
-    borderRadius: 20,
+    height: 56,
+    borderRadius: 12,
+  },
+  buttonText: {
+    flexGrow: 1,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 });
 

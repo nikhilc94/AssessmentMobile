@@ -2,6 +2,11 @@
   "translation": {
     "welcome": "Welcome!",
     "username": "Username",
-    "password": "Password"
+    "password": "Password",
+    "register": "Register",
+    "errors": {
+      "username": "Username must be alphanumeric & atleast 5 characters",
+      "password": "Password must be alphanumeric & atleast 8 characters"
+    }
   }
 }

@@ -1,11 +1,8 @@
 import React from 'react';
 import {View} from 'react-native';
-import {
-  HelperText,
-  TextInput as CoreTextInput,
-} from 'react-native-paper';
+import {HelperText, TextInput as CoreTextInput} from 'react-native-paper';
 
-import { useTheme } from '../theme'
+import {useTheme} from '../theme';
 
 type TextInputProps = React.ComponentProps<typeof CoreTextInput> & {
   text: string;
@@ -22,7 +19,7 @@ const TextInput = (props: TextInputProps) => {
     label = '',
     errorMessage,
     backgroundColor,
-    onChange = () => {},
+    onChange,
     ...rest
   } = props;
   const theme = useTheme();
@@ -40,11 +37,9 @@ const TextInput = (props: TextInputProps) => {
           theme={theme}
           {...rest}
         />
-        {error ? (
-          <HelperText type="error" visible={true}>
-            {errorMessage}
-          </HelperText>
-        ) : null}
+        <HelperText type="error" visible={true}>
+          {error ? errorMessage : ''}
+        </HelperText>
       </View>
     </View>
   );
