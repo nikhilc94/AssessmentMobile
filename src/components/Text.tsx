@@ -26,6 +26,12 @@ const Text = (props: TextProps) => {
           fontSize: 36,
           fontWeight: '600',
         };
+      case TEXT_VARIANT.heading3:
+        return {
+          color,
+          fontSize: 30,
+          fontWeight: '600',
+        };
       case TEXT_VARIANT.paragraph1:
         return {
           color,

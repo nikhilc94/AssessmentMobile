@@ -3,13 +3,13 @@ import {View, StyleSheet} from 'react-native';
 import {Button as PaperButton} from 'react-native-paper';
 
 const Button = props => {
-  const {disabled} = props;
+  const {disabled, ...rest} = props;
   return (
     <PaperButton
-      disabled={disabled}
       mode="contained"
+      disabled={disabled}
       style={styles.buttonStyle}
-      {...props.rest}>
+      {...rest}>
       <View style={styles.buttonText}>{props.children}</View>
     </PaperButton>
   );
