@@ -1,12 +1,11 @@
 import React from 'react';
 import {View} from 'react-native';
 import {
-  useTheme,
   HelperText,
   TextInput as CoreTextInput,
 } from 'react-native-paper';
 
-import Text from './Text';
+import { useTheme } from '../theme'
 
 type TextInputProps = React.ComponentProps<typeof CoreTextInput> & {
   text: string;

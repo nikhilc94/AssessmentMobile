@@ -3,10 +3,12 @@ import {View} from 'react-native';
 import {SvgUri} from 'react-native-svg';
 import {useTranslation} from 'react-i18next';
 
+import { useTheme } from '../../theme';
 import { TEXT_VARIANT } from '../../utils/constants';
 import {Text, Button, TextInput, AppContainer} from '../../components'
 
 const SignUp = () => {
+  const theme = useTheme();
   const {t} = useTranslation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -31,7 +33,7 @@ const SignUp = () => {
           uri="https://contentdelivery.mashreqbank.com/common/full-logo-V2/CONV.svg"
         />
       </View>
-      <Text variant={TEXT_VARIANT.heading1}>Hello</Text>
+      <Text variant={TEXT_VARIANT.heading1} color={theme.colors.primary}>Hello</Text>
       <TextInput
         text={username}
         label={t('username')}

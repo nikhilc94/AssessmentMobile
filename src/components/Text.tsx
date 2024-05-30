@@ -7,34 +7,40 @@ import {TEXT_VARIANT} from '../utils/constants';
 interface TextProps {
   variant: TEXT_VARIANT;
   children: React.ReactNode;
+  color: string;
 }
 
 const Text = (props: TextProps) => {
-  const {variant, children} = props;
+  const {variant, children, color} = props;
 
-  const getStyles = variant => {
+  const getStyles = (variant: TEXT_VARIANT) => {
     switch (variant) {
       case TEXT_VARIANT.heading1:
         return {
+          color,
           fontSize: 44,
           fontWeight: '600',
         };
       case TEXT_VARIANT.heading2:
         return {
+          color,
           fontSize: 36,
           fontWeight: '600',
         };
       case TEXT_VARIANT.paragraph1:
         return {
+          color,
           fontSize: 18,
           fontWeight: '600',
         };
       case TEXT_VARIANT.paragraph2:
         return {
+          color,
           fontSize: 14,
         };
       default:
         return {
+          color,
           fontSize: 14,
         };
     }
