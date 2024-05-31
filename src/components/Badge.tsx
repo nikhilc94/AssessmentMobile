@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Pressable} from 'react-native';
 
 import Text from './Text';
 import {useTheme} from '../theme';
@@ -16,11 +16,11 @@ const Badge = (props: BadgeProps) => {
   const {size = 50, onPress, children} = props;
   const styles = makeStyles(theme, size);
   return (
-    <TouchableOpacity onPress={onPress}>
+    <Pressable onPress={onPress}>
       <View style={styles.badge}>
         <Text color={theme.colors.surface}>{children}</Text>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

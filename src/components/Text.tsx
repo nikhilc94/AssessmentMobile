@@ -4,9 +4,9 @@ import {Text as TextComponent, StyleSheet} from 'react-native';
 import {TEXT_VARIANT} from '../utils/constants';
 
 interface TextProps {
-  variant: TEXT_VARIANT;
+  variant?: TEXT_VARIANT;
   children: React.ReactNode;
-  color: string;
+  color?: string;
 }
 
 const Text = (props: TextProps) => {
