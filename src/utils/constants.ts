@@ -13,4 +13,5 @@ export enum SPACER_VARIANT {
   LG = 24,
   XL = 32,
   XXL = 40,
+  XXXL = 56,
 }

@@ -8,7 +8,15 @@
       "username": "Username must be alphanumeric & atleast 5 characters",
       "password": "Password must be alphanumeric & atleast 8 characters"
     },
-    "selectCountryAndLang": "Select your country & language",
-    "back": "Go Back"
+    "selectCountry": "Select your country",
+    "country": {
+      "AE": "United Arab Emirates",
+      "IN": "India",
+      "SA": "Saudi Arabia",
+      "EG": "Egypt"
+    },
+    "selectLanguage": "Select your language",
+    "back": "Go Back",
+    "save": "Save"
   }
 }

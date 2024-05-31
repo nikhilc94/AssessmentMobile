@@ -1,7 +1,7 @@
 import * as Actions from './actions';
 import {COUNTRY} from '../constants';
 
-const initialState: any = {country: COUNTRY.UAE};
+const initialState: any = {country: COUNTRY.AE};
 
 export default function (state = initialState, action) {
   switch (action.type) {

@@ -62,7 +62,7 @@ const SignUp = () => {
         <View>
           <View flexDirection="row" flexGrow={1} justifyContent="flex-end">
             <Badge onPress={() => toggleCountryModal(true)}>
-              {countryDetails?.country}
+              {t(`country.${countryDetails?.country}`)}
             </Badge>
             {countryModal && (
               <Modal>
