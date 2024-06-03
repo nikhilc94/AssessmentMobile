@@ -1,27 +1,33 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
-import {SvgUri} from 'react-native-svg';
 import {useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
+import {useNavigation} from '@react-navigation/native';
+import {createUserWithEmailAndPassword} from 'firebase/auth';
 
-import {useTheme} from '../../theme';
-import {Regex} from '../../utils/Regex';
-import {SPACER_VARIANT, TEXT_VARIANT} from '../../utils/constants';
 import {
   Text,
   Badge,
+  Modal,
   Button,
+  Loader,
   Spacer,
   TextInput,
   AppContainer,
-  Modal,
 } from '../../components';
+import {auth} from '../../firebase';
+import {useTheme} from '../../theme';
+import {Regex} from '../../utils/Regex';
 import SelectCountry from '../SelectCountry';
+import {ROUTE_DASHBOARD} from '../../navigation/routes';
+import {SPACER_VARIANT, TEXT_VARIANT} from '../../utils/constants';
 
 const SignUp = () => {
   const theme = useTheme();
   const {t} = useTranslation();
+  const navigation = useNavigation();
   const {countryAndLanguage} = useSelector(state => state);
+  const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [usernameError, setUsernameError] = useState('');
@@ -64,8 +70,22 @@ const SignUp = () => {
     toggleCountryModal(false);
   };
 
+  const handleRegister = () => {
+    setLoading(true);
+    createUserWithEmailAndPassword(auth, `${username}@test.com`, password)
+      .then(() => {
+        setLoading(false);
+        navigation.push(ROUTE_DASHBOARD);
+      })
+      .catch(error => {
+        setLoading(false);
+        console.log(error?.code, error?.message);
+      });
+  };
+
   return (
     <AppContainer>
+      {loading && <Loader />}
       <View flexGrow={1} height="100%" justifyContent="space-between">
         <View>
           <View flexDirection="row" flexGrow={1} justifyContent="flex-end">
@@ -92,6 +112,7 @@ const SignUp = () => {
             errorMessage={usernameError}
             onChange={handleUsernameChange}
           />
+          <Spacer />
           <TextInput
             secureTextEntry
             text={password}
@@ -101,7 +122,7 @@ const SignUp = () => {
             onChange={handlePasswordChange}
           />
           <Spacer size={SPACER_VARIANT.LG} />
-          <Button disabled={disableButton}>
+          <Button disabled={disableButton} onPress={handleRegister}>
             <Text
               color={theme.colors.surface}
               variant={TEXT_VARIANT.paragraph1}>

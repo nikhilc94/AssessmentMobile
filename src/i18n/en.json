@@ -7,11 +7,12 @@
     "errors": {
       "username": {
         "AE": "Username must be alphanumeric & atleast 5 characters",
-        "IN": "Username must have atleast 6 characters & have one '@' or '_'",
+        "IN": "Username must have atleast 6 characters & have one '_'",
         "SA": "Username must be alphanumeric & atleast 6 characters & have 1 number",
         "EG": "Username must be alphanumeric & atleast 9 characters"
       },
-      "password": "Password must be alphanumeric & atleast 8 characters"
+      "password": "Password must be alphanumeric & atleast 8 characters",
+      "signup": "Something went wrong!"
     },
     "selectCountry": "Select your country",
     "country": {
@@ -27,6 +28,9 @@
     },
     "selectLanguage": "Select your language",
     "back": "Go Back",
-    "save": "Save"
+    "save": "Save",
+    "dashboard": {
+      "title": "User registration is successful"
+    }
   }
 }

@@ -6,3 +6,4 @@ export {default as Spacer} from './Spacer';
 export {default as Badge} from './Badge';
 export {default as Modal} from './Modal';
 export {default as RadioButton} from './RadioButton';
+export {default as Loader} from './Loader';
