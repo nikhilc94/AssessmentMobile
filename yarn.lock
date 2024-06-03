@@ -2207,6 +2207,7 @@ __metadata:
     react-native-codegen: ^0.0.7
     react-native-gesture-handler: 2.14.1
     react-native-paper: 3.2.1
+    react-native-restart: 0.0.24
     react-native-safe-area-context: 3.1.1
     react-native-svg: ^13.9.0
     react-native-vector-icons: ^7.0.0
@@ -8447,6 +8448,16 @@ __metadata:
     react-native: "*"
     react-native-vector-icons: "*"
   checksum: 5ee25faa06c8dec93ceb012c121ef2f6dd393ae5ce60a37ad73c88215872f8ba71de1e71c817a3d90035cab0d7830d8274aca4d7c74bd8439db0f7d4236d65e7
+  languageName: node
+  linkType: hard
+
+"react-native-restart@npm:0.0.24":
+  version: 0.0.24
+  resolution: "react-native-restart@npm:0.0.24"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 2ea5f1e9c31d3d705ad2061966a240db32131ad11fd227f244919f2882a1ed7a6d48aed6b7bcab59a989fb58f59ca7e1d6d5316089d011a6955975f1148160f0
   languageName: node
   linkType: hard
 

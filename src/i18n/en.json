@@ -1,11 +1,16 @@
 {
   "translation": {
-    "welcome": "Welcome!",
+    "welcome": "Welcome to Mashreq assessment signup",
     "username": "Username",
     "password": "Password",
     "register": "Register",
     "errors": {
-      "username": "Username must be alphanumeric & atleast 5 characters",
+      "username": {
+        "AE": "Username must be alphanumeric & atleast 5 characters",
+        "IN": "Username must have atleast 6 characters & have one '@' or '_'",
+        "SA": "Username must be alphanumeric & atleast 6 characters & have 1 number",
+        "EG": "Username must be alphanumeric & atleast 9 characters"
+      },
       "password": "Password must be alphanumeric & atleast 8 characters"
     },
     "selectCountry": "Select your country",
@@ -14,6 +19,11 @@
       "IN": "India",
       "SA": "Saudi Arabia",
       "EG": "Egypt"
+    },
+    "language": {
+      "en": "English",
+      "ar": "عربي",
+      "hi": "हिंदी"
     },
     "selectLanguage": "Select your language",
     "back": "Go Back",

@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {FlatList, View} from 'react-native';
+import i18next from 'i18next';
+import RNRestart from 'react-native-restart';
 import {useTranslation} from 'react-i18next';
+import {useDispatch, useSelector} from 'react-redux';
+import {FlatList, I18nManager, View} from 'react-native';
 
 import {useTheme} from '../../theme';
+import {isRTLLanguage} from '../../utils';
 import {COUNTRY, LANGUAGE} from './constants';
 import * as CountryActions from './store/actions';
 import {SPACER_VARIANT, TEXT_VARIANT} from '../../utils/constants';
@@ -20,11 +23,10 @@ const SelectCountry = props => {
   const theme = useTheme();
   const {t} = useTranslation();
   const dispatch = useDispatch();
-  const {countryDetails} = useSelector(state => state);
+  const {countryAndLanguage} = useSelector(state => state);
 
-  const [selectedCountry, setSelectedCountry] = useState(
-    countryDetails?.country,
-  );
+  const [country, setCountry] = useState<COUNTRY>(countryAndLanguage?.country);
+  const [lang, setLang] = useState<LANGUAGE>(countryAndLanguage?.language);
 
   const countries = [
     {label: t(`country.${COUNTRY.AE}`), value: COUNTRY.AE},
@@ -40,7 +42,17 @@ const SelectCountry = props => {
   ];
 
   const handleSave = () => {
-    dispatch(CountryActions.selectCountry(selectedCountry));
+    if (countryAndLanguage?.country !== country) {
+      dispatch(CountryActions.selectCountry(country));
+    }
+    if (countryAndLanguage?.language !== lang) {
+      dispatch(CountryActions.selectLanguage(lang));
+      i18next.changeLanguage(lang);
+      I18nManager.forceRTL(isRTLLanguage(lang));
+      setTimeout(() => {
+        RNRestart.Restart();
+      }, 1000);
+    }
     onDismiss();
   };
 
@@ -60,10 +72,8 @@ const SelectCountry = props => {
                 <RadioButton
                   label={item.label}
                   value={item.value}
-                  status={
-                    selectedCountry === item.value ? 'checked' : 'unchecked'
-                  }
-                  onPress={() => setSelectedCountry(item.value)}
+                  status={country === item.value ? 'checked' : 'unchecked'}
+                  onPress={() => setCountry(item.value)}
                 />
                 <Spacer />
               </>
@@ -74,6 +84,20 @@ const SelectCountry = props => {
             {t('selectLanguage')}
           </Text>
           <Spacer size={SPACER_VARIANT.LG} />
+          <FlatList
+            data={languages}
+            renderItem={({item}) => (
+              <>
+                <RadioButton
+                  label={item.label}
+                  value={item.value}
+                  status={lang === item.value ? 'checked' : 'unchecked'}
+                  onPress={() => setLang(item.value)}
+                />
+                <Spacer />
+              </>
+            )}
+          />
         </View>
         <View>
           <Button mode={'outline'} onPress={onDismiss}>

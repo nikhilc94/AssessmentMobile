@@ -21,7 +21,7 @@ import SelectCountry from '../SelectCountry';
 const SignUp = () => {
   const theme = useTheme();
   const {t} = useTranslation();
-  const {countryDetails} = useSelector(state => state);
+  const {countryAndLanguage} = useSelector(state => state);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [usernameError, setUsernameError] = useState('');
@@ -29,11 +29,13 @@ const SignUp = () => {
 
   const [countryModal, toggleCountryModal] = useState(false);
 
+  const {country, language} = countryAndLanguage || {};
+
   const handleUsernameChange = (val: string) => {
     const text = val.trim();
-    const regex = new RegExp(Regex.USERNAME_AE);
+    const regex = new RegExp(Regex.USERNAME[country]);
     if (!regex.test(text)) {
-      setUsernameError(t('errors.username'));
+      setUsernameError(t(`errors.username.${country}`));
     } else {
       setUsernameError('');
     }
@@ -54,7 +56,13 @@ const SignUp = () => {
   const disableButton =
     !username || !password || usernameError || passwordError;
 
-  const handleDismissModal = () => toggleCountryModal(false);
+  const handleDismissModal = () => {
+    setUsername('');
+    setPassword('');
+    setUsernameError('');
+    setPasswordError('');
+    toggleCountryModal(false);
+  };
 
   return (
     <AppContainer>
@@ -62,7 +70,7 @@ const SignUp = () => {
         <View>
           <View flexDirection="row" flexGrow={1} justifyContent="flex-end">
             <Badge onPress={() => toggleCountryModal(true)}>
-              {t(`country.${countryDetails?.country}`)}
+              {t(`${language}-${country}`)}
             </Badge>
             {countryModal && (
               <Modal>
@@ -70,20 +78,10 @@ const SignUp = () => {
               </Modal>
             )}
           </View>
-          <View
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <SvgUri
-              // width="30%"
-              height="30%"
-              // uri="https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/debian.svg"
-              uri="https://contentdelivery.mashreqbank.com/common/full-logo-V2/CONV.svg"
-            />
-          </View>
-          <Text variant={TEXT_VARIANT.heading1} color={theme.colors.primary}>
-            Hello
+        </View>
+        <View>
+          <Text variant={TEXT_VARIANT.heading3} color={theme.colors.primary}>
+            {t('welcome')}
           </Text>
         </View>
         <View>
